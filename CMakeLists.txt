@@ -23,7 +23,7 @@ set(HEADERS_TEST
 	steiner.h
 	prim.h)
 	
-include_directories("include")
+include_directories("files")
 
 add_executable(main ${SOURCES_MAIN} ${HEADERS_MAIN})
 add_executable(test ${SOURCES_TEST} ${HEADERS_TEST})

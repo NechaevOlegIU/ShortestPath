@@ -52,8 +52,15 @@ SCENARIO("WRONG FILE - Wrong way to file") {
 
 SCENARIO("GOOD FILE - Cant divide into triangles") {
 	Delaunay<float> triangulation;
-	std::vector<Triangle<float>> triangles = triangulation.Load("files/totallywrong.dat");
+	std::vector<Triangle<float>> triangles = triangulation.Load("files/notriangle.dat");
 	REQUIRE(triangles.size() == 0);
+	Steiner<float> steiner;
+	std::vector<Vector2<float>> steinerpoints = steiner.additionalVertices(triangles);
+
+	std::vector<Vector2<float>> points = triangulation.getVertices();
+	Prim<float> prim;
+	float result = prim.shortestPath(points, steinerpoints);
+	REQUIRE(isEqual(result, 2.82843));
 }
 
 SCENARIO("GOOD FILE - Full run") {

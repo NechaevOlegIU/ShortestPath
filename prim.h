@@ -60,12 +60,15 @@ public:
 		}
 
 		// Show and return best result
+		std::cout << std::endl << "Best additional points:" << std::endl;
 		std::vector<Vector2<float>> randPoints;
 		for (auto &v : vertices) randPoints.push_back(v);
 		for (int j = 0; j < steinerpoints.size(); j++)
 		{
-			if (bin[n][j] == 1)
+			if (bin[n][j] == 1) {
 				randPoints.push_back(steinerpoints[j]);
+				std::cout << "x " << steinerpoints[j].x << " y " << steinerpoints[j].y << std::endl;
+			}
 		}
 		std::vector<std::vector<float>> adjMatrix = getAdjMatrix(randPoints);
 		primMST(adjMatrix, 1);
